@@ -1,178 +1,191 @@
-# Usama Ashraf - 3D Portfolio Website
+# Usama Ashraf — 3D Portfolio
 
-This repository contains the source code for my personal 3D portfolio built with React, TypeScript, Three.js, React Three Fiber, and GSAP. It includes animated page sections, a 3D character scene, custom cursor interactions, and smooth transitions designed for a modern portfolio experience.
+Personal portfolio site for **Usama Ashraf**, Solution Architect and Full Stack AI & Web3 developer. Built with React, TypeScript, Three.js and GSAP, it pairs a scroll-driven 3D character scene with animated sections, a custom cursor, and a project gallery.
 
-Live site: [https://hxnix-gold.vercel.app/](https://hxnix-gold.vercel.app/)
+**Live site:** [www.usamaash.dev](https://www.usamaash.dev/)
 
-![Portfolio Preview](./public/images/preview.png)
+## Contact
 
-![QR Code](./public/images/qr-code.png)
+- **Email:** [usamaashraf127@gmail.com](mailto:usamaashraf127@gmail.com)
+- **LinkedIn:** [linkedin.com/in/usamaashraf127](https://www.linkedin.com/in/usamaashraf127/)
+- **GitHub:** [github.com/Usama397](https://github.com/Usama397)
 
 ## Table of Contents
 
-- [Features](#features)
+- [About](#about)
+- [Site Sections](#site-sections)
+- [Featured Work](#featured-work)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
+- [The 3D Character Scene](#the-3d-character-scene)
 - [Getting Started](#getting-started)
 - [Available Scripts](#available-scripts)
+- [Editing the Content](#editing-the-content)
 - [GSAP License Note](#gsap-license-note)
-- [Customization Guide](#customization-guide)
 - [Troubleshooting](#troubleshooting)
 - [Deployment](#deployment)
 - [License](#license)
 
-## Features
+## About
 
-- Responsive one-page portfolio layout with reusable section components.
-- 3D character scene rendering powered by React Three Fiber and Three.js.
-- GSAP-powered animations and transitions for interactive storytelling.
-- Custom cursor, hover interactions, and scroll-driven visual effects.
-- Organized component architecture with dedicated utilities and style modules.
+I turn ambitious ideas into production-grade AI and Web3 platforms. From architecture to launch, I build products that scale cleanly, move fast, and earn trust.
+
+**Solution Architect — System Design & Technical Strategy**
+Turning business requirements into scalable, cloud-native systems with clean API boundaries, solid data models, and automated delivery.
+`System Design` `AWS` `Microservices` `REST APIs` `Docker & CI/CD` `PostgreSQL`
+
+**Full Stack AI & Web3 — Intelligent Apps & Onchain Systems**
+Pairing LLM-powered features with smart contracts: RAG pipelines, agent tooling, and wallet-connected dApps on EVM chains.
+`Next.js` `Node.js` `TypeScript` `LLMs & RAG` `Solidity` `ethers.js`
+
+### Education & Learning
+
+| | | |
+| --- | --- | --- |
+| **Computer Science** | Abasyn University | 2024–28 |
+| **Full Stack Development** | Self-taught & projects | 2023–now |
+
+## Site Sections
+
+| Section | Component | Purpose |
+| --- | --- | --- |
+| Landing | `Landing.tsx` | Animated intro over the 3D character scene |
+| About | `About.tsx` | Short positioning statement |
+| What I Do | `WhatIDo.tsx` | The two practice areas and their toolsets |
+| Career | `Career.tsx` | Education and learning timeline |
+| Work | `Work.tsx` | Featured project gallery |
+| Tech Stack | `TechStack.tsx` | Marquee of tools and frameworks |
+| Contact | `Contact.tsx` | Direct links and social profiles |
+
+## Featured Work
+
+| Project | Focus | Stack |
+| --- | --- | --- |
+| [AminoArcade](#) | Peptide marketplace & protocol tracking | Next.js, TypeScript, Node.js, PostgreSQL, Stripe |
+| [Fika Duka](https://fikaduka.com) | Retail distribution, field sales & logistics | React Native, Node.js, PostgreSQL, Maps API |
+| [NexSentia](https://nexsentia.com) | Organizational friction detection | Next.js, Python, LLMs, RAG, PostgreSQL |
+| [OFFR](https://of-fr.com) | Local deals, experience booking & rewards | React Native, Node.js, PostgreSQL, Stripe |
+| Zooni | F45 fitness SaaS marketplace | Next.js, TypeScript, Node.js, Stripe, AWS |
+| [CSPERKS](https://csperks.com) | CS2 match & inventory analytics | Next.js, TypeScript, Node.js, Redis, Steam API |
+| [VNEXIA](https://vnexia.com) | AI-powered health & safety | Next.js, Python, LLMs, Computer Vision, AWS |
+| [SENOA](https://senoaapp.com) | Crypto-native social commerce | Next.js, TypeScript, Solidity, wagmi, Node.js |
+
+Project entries live in the `projects` array at the top of `src/components/Work.tsx`.
 
 ## Tech Stack
 
-### Core
+**Core** — React 18, TypeScript, Vite
 
-- React 18
-- TypeScript
-- Vite
+**3D & animation** — Three.js, `three-stdlib`, `@react-three/fiber`, `@react-three/drei`, `@react-three/postprocessing`, `@react-three/cannon`, `@react-three/rapier`, GSAP with `@gsap/react` (ScrollTrigger, ScrollSmoother, SplitText)
 
-### Animation and 3D
-
-- GSAP + `@gsap/react`
-- Three.js
-- `@react-three/fiber`
-- `@react-three/drei`
-- `@react-three/postprocessing`
-- `@react-three/cannon`
-- `@react-three/rapier`
-
-### Supporting Libraries
-
-- `react-icons`
-- `react-fast-marquee`
-- `@vercel/analytics`
+**Supporting** — `react-icons`, `react-fast-marquee`, `@vercel/analytics`
 
 ## Project Structure
 
 ```text
 .
-├── public/                    # Static assets
+├── public/
+│   ├── draco/                 # Draco decoder for compressed geometry
+│   ├── images/                # Section art, tech logos
+│   │   └── projects/          # Work gallery thumbnails
+│   └── models/
+│       ├── character.enc      # AES-encrypted 3D character (GLB)
+│       └── char_enviorment.hdr
 ├── src/
-│   ├── assets/                # Local media/assets
 │   ├── components/
-│   │   ├── Character/         # 3D scene + character logic/utilities
-│   │   ├── styles/            # Section/component CSS files
-│   │   ├── About.tsx
-│   │   ├── Career.tsx
-│   │   ├── Contact.tsx
-│   │   ├── Landing.tsx
-│   │   ├── MainContainer.tsx  # Main page composition
-│   │   ├── Navbar.tsx
-│   │   ├── TechStack.tsx
-│   │   ├── WhatIDo.tsx
-│   │   └── Work.tsx
-│   ├── context/               # Global providers (loading state, etc.)
-│   ├── data/                  # Static data/content definitions
+│   │   ├── Character/         # 3D scene setup
+│   │   │   ├── Scene.tsx      # Renderer, camera, render loop
+│   │   │   └── utils/         # Model loading, lighting, animation, input
+│   │   ├── styles/            # Per-section CSS
+│   │   ├── utils/             # GSAP scroll timelines, intro FX, text splitting
+│   │   └── *.tsx              # Page sections
+│   ├── context/               # Loading state provider
+│   ├── data/                  # Bone name lists for the character rig
+│   ├── types/                 # GSAP plugin type declarations
 │   ├── App.tsx
 │   └── main.tsx
+├── index.html
 ├── package.json
 └── vite.config.ts
 ```
+
+## The 3D Character Scene
+
+The centrepiece is a rigged character that reacts to the cursor and animates as you scroll.
+
+- **Encrypted model.** The GLB ships as `public/models/character.enc` and is decrypted in the browser via the Web Crypto API (`Character/utils/decrypt.ts`) before being handed to `GLTFLoader`.
+- **Draco compression.** Geometry is decoded with the decoder in `public/draco/`.
+- **Scroll choreography.** `components/utils/GsapScroll.ts` drives the character's pose and camera through the page using GSAP ScrollTrigger.
+- **Cursor tracking.** The head bone follows the pointer near the top of the page (`Character/utils/mouseUtils.ts`).
+- **Appearance tweaks.** Outfit colour and the character's beard are applied at load time in `Character/utils/character.ts` and `Character/utils/facialHair.ts`, by cloning materials rather than editing the model.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ (recommended)
-- npm 9+ (or compatible)
+- Node.js 18+
+- npm 9+
 
 ### Installation
 
-1. Clone the repository:
+```bash
+git clone https://github.com/Usama397/<repository-name>.git
+cd 3d-portfolio-main
+npm install
+npm run dev
+```
 
-   ```bash
-   git clone <your-repository-url>
-   cd 3d-portfolio
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the local development server:
-
-   ```bash
-   npm run dev
-   ```
-
-4. Open the URL shown in the terminal (typically `http://localhost:5173`).
+Then open the URL Vite prints (typically `http://localhost:5173`). The dev server runs with `--host`, so the site is also reachable from other devices on your network.
 
 ## Available Scripts
 
-- `npm run dev`  
-  Starts Vite dev server and exposes host for local network testing.
+| Script | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite dev server, exposed on the local network |
+| `npm run build` | Type-check with `tsc -b`, then build to `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | Run ESLint across the project |
 
-- `npm run build`  
-  Type-checks and builds a production-ready bundle.
+## Editing the Content
 
-- `npm run preview`  
-  Serves the production build locally for verification.
-
-- `npm run lint`  
-  Runs ESLint checks across the project.
+- **Name, headline, intro** — `src/components/Landing.tsx` and the `<title>` in `index.html`
+- **About blurb** — `src/components/About.tsx`
+- **Practice areas and skill tags** — `src/components/WhatIDo.tsx`
+- **Education timeline** — `src/components/Career.tsx`
+- **Projects** — the `projects` array in `src/components/Work.tsx`, with images in `public/images/projects/`
+- **Contact details and social links** — `src/components/Contact.tsx`, `src/components/SocialIcons.tsx`, `src/components/Navbar.tsx`
+- **Styling** — per-section CSS in `src/components/styles/`, globals in `src/index.css` and `src/App.css`
 
 ## GSAP License Note
 
-This project uses the standard `gsap` package, including bonus plugins now available in the core package.
-
-- Install dependencies with `npm install`.
-- If migrating from older setups, remove `gsap-trial` from your project.
-
-Read official installation guidance here: [GSAP Installation Docs](https://gsap.com/docs/v3/Installation/)
-
-## Customization Guide
-
-You can adapt this portfolio to your own profile by updating the following areas:
-
-- **Content sections**: Edit files in `src/components/` such as `About.tsx`, `Career.tsx`, `WhatIDo.tsx`, and `Work.tsx`.
-- **Data source**: Update static values in files under `src/data/`.
-- **Styling**: Modify component styles in `src/components/styles/` and global styles in `src/index.css` / `src/App.css`.
-- **3D scene behavior**: Adjust scene logic in `src/components/Character/` and related utilities.
-- **Animations**: Tweak GSAP utilities under `src/components/utils/`.
+This project uses the standard `gsap` package, which now includes the formerly premium plugins (ScrollSmoother, SplitText) in core. If you are migrating from an older setup, remove any `gsap-trial` dependency first. See the [GSAP installation docs](https://gsap.com/docs/v3/Installation/).
 
 ## Troubleshooting
 
-- **Blank screen in development**  
-  Check browser console for module import errors and verify all dependencies are installed.
+**Blank screen in development**
+Check the browser console for module import errors and confirm dependencies installed cleanly.
 
-- **3D performance issues on low-end devices**  
-  Reduce scene complexity and post-processing effects in the character/scene utilities.
+**`Failed to resolve entry for package` or truncated source maps**
+Usually a partially written `node_modules` from an interrupted install. Reinstall the offending package, or `rm -rf node_modules && npm ci`.
 
-- **GSAP plugin errors**  
-  Ensure you have the correct plugin package and license configuration for your target environment.
+**Character never appears / loading bar stalls**
+The model is decrypted and Draco-decoded in the browser. Confirm `public/models/character.enc` and `public/draco/` are being served, and that the page has a WebGL context.
 
-- **TypeScript build failures**  
-  Run `npm run build` and address reported type errors before deploying.
+**Poor performance on low-end devices**
+Reduce post-processing and scene complexity in `src/components/Character/`.
+
+**TypeScript build failures**
+`noUnusedLocals` is enabled, so unused imports fail the build. Run `npm run build` and clear reported errors before deploying.
 
 ## Deployment
 
-1. Create a production build:
+```bash
+npm run build     # outputs to dist/
+npm run preview   # verify locally
+```
 
-   ```bash
-   npm run build
-   ```
-
-2. Validate locally:
-
-   ```bash
-   npm run preview
-   ```
-
-3. Deploy the generated `dist/` folder to your hosting provider (for example Vercel, Netlify, or Cloudflare Pages).
+Deploy `dist/` to any static host — Vercel, Netlify, or Cloudflare Pages. `@vercel/analytics` is wired up, so page analytics work out of the box on Vercel.
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE). © 2026 Usama Ashraf.
